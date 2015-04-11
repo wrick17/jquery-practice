@@ -1,0 +1,44 @@
+body {
+  padding: 50px 0;
+}
+
+.table {
+  tbody {
+    tr {
+      td {
+        label {
+          font-weight: normal;
+          input {
+            margin-right: 15px;
+            vertical-align: top;
+          }
+        }
+        i {
+          margin-right: 15px;
+          color: #999;
+          &:first-child {
+            margin-right: 3px;
+          }
+        }
+      }
+    }
+  }
+  &.selected {
+    tbody {
+      tr:first-child {
+        td {
+          i.move-up {
+            opacity: 0.3;
+          }
+        }
+      }
+      tr:last-child {
+        td {
+          i.move-down {
+            opacity: 0.3;
+          }
+        }
+      }
+    }
+  }
+}
