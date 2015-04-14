@@ -1,23 +1,48 @@
 body {
   padding: 50px 0;
 }
-.table tbody tr td label {
+body .container {
+  float: none;
+}
+.tabs ul {
+  overflow: auto;
+  padding: 0;
+}
+.tabs ul li {
+  border-bottom: 1px solid #cccccc;
+  list-style: none;
+  padding: 10px;
+}
+.tabs ul li.active {
+  border: 1px solid #cccccc;
+  border-bottom: white;
+}
+.tab-pane {
+  display: none;
+}
+.tab-pane.active {
+  display: block;
+}
+.tab-pane .table tbody tr td label {
   font-weight: normal;
 }
-.table tbody tr td label input {
+.tab-pane .table tbody tr td label input {
   margin-right: 15px;
   vertical-align: top;
 }
-.table tbody tr td i {
+.tab-pane .table tbody tr td i {
   margin-right: 15px;
   color: #999;
 }
-.table tbody tr td i:first-child {
+.tab-pane .table tbody tr td i:first-child {
   margin-right: 3px;
 }
-.table.selected tbody tr:first-child td i.move-up {
+.tab-pane .table tbody tr td i:last-child {
+  float: right;
+}
+.selected .table tbody tr:first-child td i.move-up {
   opacity: 0.3;
 }
-.table.selected tbody tr:last-child td i.move-down {
+.selected .table tbody tr:last-child td i.move-down {
   opacity: 0.3;
 }
