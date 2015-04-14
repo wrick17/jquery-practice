@@ -1,8 +1,11 @@
 (function () {
 
-  var totalMains = $('.mains tbody tr td input:checkbox').length,
+  var mains = $('.mains'),
+  optional = $('.optional'),
+  selected = $('.selected'),
+  totalMains = mains.find('tbody tr td input:checkbox').length,
   selectedMains = 0,
-  totalOptional = $('.optional tbody tr td input:checkbox').length,
+  totalOptional = optional.find('tbody tr td input:checkbox').length,
   selectedOptional = 0;
   subName = null,
   entry = null,
@@ -28,19 +31,12 @@
       subName = $(this).parent().text();
       if ($(this).is(':checked')) {
 
-        $('.selected tbody tr td label:contains("No Subjects Selected")').parents('tr').remove();
-        entry = '<tr>'+
-        '<td>' +
-        '<i class="glyphicon glyphicon-circle-arrow-up move-up"></i>' +
-        '<i class="glyphicon glyphicon-circle-arrow-down move-down"></i>' +
-        '<label>'+subName+'</label>' +
-        '<i class="glyphicon glyphicon-remove-sign remove"></i>' +
-        '</td>'+
-        '</tr>';
-        $('.selected tbody').append(entry);
+        selected.find('tbody tr td label:contains("No Subjects Selected")').parents('tr').remove();
+        entry = makeSelectedItemHtml(subName);
+        selected.find('tbody').append(entry);
       }
       else {
-        $('.selected tbody tr td label:contains('+subName+')').parents('tr').remove();
+        selected.find('tbody tr td label:contains('+subName+')').parents('tr').remove();
         checkSelected();
       }
 
@@ -51,19 +47,12 @@
 
       subName = $(this).parent().text();
       if ($(this).is(':checked')) {
-        $('.selected tbody tr td label:contains("No Subjects Selected")').parents('tr').remove();
-        entry = '<tr>'+
-        '<td>' +
-        '<i class="glyphicon glyphicon-circle-arrow-up move-up"></i>' +
-        '<i class="glyphicon glyphicon-circle-arrow-down move-down"></i>' +
-        '<label>'+subName+'</label>' +
-        '<i class="glyphicon glyphicon-remove-sign remove"></i>' +
-        '</td>'+
-        '</tr>';
-        $('.selected tbody').append(entry);
+        selected.find('tbody tr td label:contains("No Subjects Selected")').parents('tr').remove();
+        entry = makeSelectedItemHtml(subName);
+        selected.find('tbody').append(entry);
       }
       else {
-        $('.selected tbody tr td label:contains('+subName+')').parents('tr').remove();
+        selected.find('tbody tr td label:contains('+subName+')').parents('tr').remove();
         checkSelected();
       }
 
@@ -100,34 +89,46 @@
 
   }
 
+  function makeSelectedItemHtml(subName) {
+    var html = '<tr>'+
+          '<td>' +
+            '<i class="glyphicon glyphicon-circle-arrow-up move-up"></i>' +
+            '<i class="glyphicon glyphicon-circle-arrow-down move-down"></i>' +
+            '<label>'+subName+'</label>' +
+            '<i class="glyphicon glyphicon-remove-sign remove"></i>' +
+          '</td>'+
+        '</tr>';
+    return html;
+  }
+
   function checkMains() {
 
-    selectedMains = $('.mains tbody tr td input:checkbox:checked').length;
+    selectedMains = mains.find('tbody tr td input:checkbox:checked').length;
     if (selectedMains === 3) {
-      $('.mains tbody tr td input:checkbox:not(:checked)').attr('disabled', true);
+      mains.find('tbody tr td input:checkbox:not(:checked)').attr('disabled', true);
     }
     else {
-      $('.mains tbody tr td input:checkbox:not(:checked)').attr('disabled', false);
+      mains.find('tbody tr td input:checkbox:not(:checked)').attr('disabled', false);
     }
   }
 
   function checkOptional() {
 
-    selectedOptional = $('.optional tbody tr td input:checkbox:checked').length;
+    selectedOptional = optional.find('tbody tr td input:checkbox:checked').length;
     if (selectedOptional === 2) {
-      $('.optional tbody tr td input:checkbox:not(:checked)').attr('disabled', true);
+      optional.find('tbody tr td input:checkbox:not(:checked)').attr('disabled', true);
     }
     else {
-      $('.optional tbody tr td input:checkbox:not(:checked)').attr('disabled', false);
+      optional.find('tbody tr td input:checkbox:not(:checked)').attr('disabled', false);
     }
   }
 
   function checkSelected() {
-    if ($('.selected tbody tr').length === 0) {
+    if (selected.find('tbody tr').length === 0) {
       entry = '<tr>'+
       '<td><label>No Subjects Selected</label></td>'+
       '</tr>';
-      $('.selected tbody').append(entry);
+      selected.find('tbody').append(entry);
     }
   }
 
