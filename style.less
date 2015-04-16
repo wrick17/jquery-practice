@@ -1,3 +1,12 @@
+html, body {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 @border-color: #ccc;
 
 @tab-width: 150px;
@@ -14,6 +23,7 @@ body {
     overflow: auto;
     padding: 0;
     li {
+      cursor: pointer;
       border-bottom: 1px solid @border-color;
       list-style: none;
       padding: 10px;
@@ -29,13 +39,28 @@ body {
   &.active {
     display: block;
   }
+  .table-container:first-child {
+    padding-left: 0;
+  }
+  .table-container:last-child {
+    padding-right: 0;
+  }
   .table {
+    thead {
+      tr {
+        th {
+          cursor: default;
+        }
+      }
+    }
     tbody {
       tr {
         td {
           label {
+            cursor: pointer;
             font-weight: normal;
             input {
+              cursor: pointer;
               margin-right: 15px;
               vertical-align: top;
             }
@@ -43,6 +68,7 @@ body {
           i {
             margin-right: 15px;
             color: #999;
+            cursor: pointer;
             &:first-child {
               margin-right: 3px;
             }
@@ -58,6 +84,13 @@ body {
 .selected {
   .table{
     tbody {
+      tr {
+        td {
+          label {
+            cursor: default;
+          }
+        }
+      }
       tr:first-child {
         td {
           i.move-up {

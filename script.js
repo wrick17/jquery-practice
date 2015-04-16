@@ -10,7 +10,7 @@
   subName = null,
   entry = null,
   body = $('body'),
-  tableName = null,
+  tabName = null,
   tabs = $('.tab'),
   panes = $('.tab-pane');
 
@@ -19,11 +19,11 @@
   function init () {
 
     body.on('click', '.tab', function(event) {
-      tableName = '.' + $(this).text().toLowerCase();
+      tabName = '.' + $(this).text().toLowerCase();
       tabs.removeClass('active');
       panes.removeClass('active');
       $(this).addClass('active');
-      $(tableName).addClass('active');
+      $(tabName).addClass('active');
     });
 
     body.on('click', '.main-sub', function(event) {
@@ -92,10 +92,10 @@
   function makeSelectedItemHtml(subName) {
     var html = '<tr>'+
           '<td>' +
-            '<i class="glyphicon glyphicon-circle-arrow-up move-up"></i>' +
-            '<i class="glyphicon glyphicon-circle-arrow-down move-down"></i>' +
+            '<i class="glyphicon glyphicon-upload move-up"></i>' +
+            '<i class="glyphicon glyphicon-download move-down"></i>' +
             '<label>'+subName+'</label>' +
-            '<i class="glyphicon glyphicon-remove-sign remove"></i>' +
+            '<i class="glyphicon glyphicon-remove-circle remove"></i>' +
           '</td>'+
         '</tr>';
     return html;

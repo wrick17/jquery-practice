@@ -1,3 +1,12 @@
+html,
+body {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 body {
   padding: 50px 0;
 }
@@ -9,6 +18,7 @@ body .container {
   padding: 0;
 }
 .tabs ul li {
+  cursor: pointer;
   border-bottom: 1px solid #cccccc;
   list-style: none;
   padding: 10px;
@@ -23,22 +33,37 @@ body .container {
 .tab-pane.active {
   display: block;
 }
+.tab-pane .table-container:first-child {
+  padding-left: 0;
+}
+.tab-pane .table-container:last-child {
+  padding-right: 0;
+}
+.tab-pane .table thead tr th {
+  cursor: default;
+}
 .tab-pane .table tbody tr td label {
+  cursor: pointer;
   font-weight: normal;
 }
 .tab-pane .table tbody tr td label input {
+  cursor: pointer;
   margin-right: 15px;
   vertical-align: top;
 }
 .tab-pane .table tbody tr td i {
   margin-right: 15px;
   color: #999;
+  cursor: pointer;
 }
 .tab-pane .table tbody tr td i:first-child {
   margin-right: 3px;
 }
 .tab-pane .table tbody tr td i:last-child {
   float: right;
+}
+.selected .table tbody tr td label {
+  cursor: default;
 }
 .selected .table tbody tr:first-child td i.move-up {
   opacity: 0.3;
