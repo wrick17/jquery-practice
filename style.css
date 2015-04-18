@@ -33,12 +33,6 @@ body .container {
 .tab-pane.active {
   display: block;
 }
-.tab-pane .table-container:first-child {
-  padding-left: 0;
-}
-.tab-pane .table-container:last-child {
-  padding-right: 0;
-}
 .tab-pane .table thead tr th {
   cursor: default;
 }

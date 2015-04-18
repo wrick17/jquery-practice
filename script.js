@@ -26,7 +26,7 @@
       $(tabName).addClass('active');
     });
 
-    body.on('click', '.main-sub', function(event) {
+    mains.on('click', '.main-sub', function(event) {
 
       subName = $(this).parent().text();
       if ($(this).is(':checked')) {
@@ -43,7 +43,7 @@
       checkMains();
     });
 
-    body.on('click', '.optional-sub', function(event) {
+    optional.on('click', '.optional-sub', function(event) {
 
       subName = $(this).parent().text();
       if ($(this).is(':checked')) {
@@ -59,32 +59,35 @@
       checkOptional();
     });
 
-    body.on('click', '.move-up', function (event) {
+    selected.on('click', function (event) {
+      var target = event.target;
 
-      var el = $(this).parents('tr');
-      if (el.index() > 0) {
-        el.clone().insertBefore(el.siblings()[el.index()-1]);
-        el.remove();
+      if ($(target).hasClass('move-up')) {
+        var el = $(target).parents('tr');
+        if (el.index() > 0) {
+          el.clone().insertBefore(el.siblings()[el.index()-1]);
+          el.remove();
+        }
+      };
+
+      if ($(target).hasClass('move-down')) {
+        var el = $(target).parents('tr');
+        if (el.index() < el.siblings().length) {
+          el.clone().insertAfter(el.siblings()[el.index()]);
+          el.remove();
+        }
+      };
+
+      if ($(target).hasClass('remove')) {
+        var subject = $(target).siblings('label').text();
+        var el = $('.tab-pane:not(.selected) label:contains(' + subject + ')');
+        el.find('input').attr('checked', false);
+        $(target).parents('tr').remove();
+        checkSelected();
+        checkMains();
+        checkOptional();
       }
-    });
 
-    body.on('click', '.move-down', function (event) {
-
-      var el = $(this).parents('tr');
-      if (el.index() < el.siblings().length) {
-        el.clone().insertAfter(el.siblings()[el.index()]);
-        el.remove();
-      }
-    });
-
-    body.on('click', '.remove', function(event) {
-      var subject = $(this).siblings('label').text();
-      var el = $('.tab-pane:not(.selected) label:contains(' + subject + ')');
-      el.find('input').attr('checked', false);
-      $(this).parents('tr').remove();
-      checkSelected();
-      checkMains();
-      checkOptional();
     });
 
   }
